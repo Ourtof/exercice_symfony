@@ -35,23 +35,29 @@ class AgeController extends AbstractController
     #[Route('/age/{age}', name: 'app_age')]
     public function age($age)
     {
-        return new Response("L'âge du capitaine est de " . $age . " ans");
+        if(is_numeric($age) && $age > 0) {
+            return new Response("L'âge du capitaine est de " . $age . " an(s).");
+        } else {
+            return new Response("T'abuses, mets un chiffre et supérieur à 0 j'te dit.");
+        };
     }
 
     #[Route('/poker/{number}', name: 'app_poker')]
     public function poker($number)
     {
-        if($number >= 18) {
+        if(is_numeric($number) && $number > 17) {
             return new Response("vous êtes autorisés à jouer");
+        } elseif(!is_numeric($number)) {
+            return new Response("METS UN CHIFFRE OH !");
         } else {
-            return new Response ("vous ne pouvez pas jouer... Désolé");
-        } 
+            return new Response("vous ne pouvez pas jouer... Désolé");
+        }
     }
 
     #[Route('/article/{id}', name: 'app_article')]
     public function article($id)
     {
-        if($id <= 3) {
+        if(array_key_exists($id, $this->article) && $id <= 3) {
             return new Response(print_r($this->article[$id], true));
         } else {
             return new Response("L'article sélectionné n'existe pas");
