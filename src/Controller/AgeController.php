@@ -46,11 +46,11 @@ class AgeController extends AbstractController
     public function poker($number)
     {
         if(is_numeric($number) && $number > 17) {
-            return new Response("vous êtes autorisés à jouer");
+            return new Response("Vous êtes autorisés à jouer");
         } elseif(!is_numeric($number)) {
             return new Response("METS UN CHIFFRE OH !");
         } else {
-            return new Response("vous ne pouvez pas jouer... Désolé");
+            return new Response("Vous ne pouvez pas jouer... Désolé");
         }
     }
 
