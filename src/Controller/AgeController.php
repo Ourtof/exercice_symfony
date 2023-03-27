@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AgeController extends AbstractController
 {
-    private $article = [
+    private $articles = [
         1 => [
         "titre" => "Titre 1",
         "contenu" => "Lorem ipsum dolor sit,
@@ -57,10 +57,23 @@ class AgeController extends AbstractController
     #[Route('/article/{id}', name: 'app_article')]
     public function article($id)
     {
-        if(array_key_exists($id, $this->article)) {
-            return new Response(print_r($this->article[$id], true));
+        if(array_key_exists($id, $this->articles)) {
+            return new Response(print_r($this->articles[$id], true));
         } else {
             return new Response("L'article sélectionné n'existe pas");
         }
+
+    }
+
+    #[Route('/articledefini/{id}', name: 'app_articledefini')]
+    public function articledefini($id)
+    {
+        return $this->render('article.html.twig', ['article' => $this->articles[$id]]);
+    }
+
+    #[Route('/article2', name: 'app_article2')]
+    public function article2()
+    {
+        return $this->render('article2.html.twig', ['articles' => $this->articles]);
     }
 }
