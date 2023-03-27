@@ -6,6 +6,8 @@
 
     {% for article in articles %}
         <h1>{{ article.titre }}</h1>
+    {% else %}
+        <p>Aucun contenu à afficher</p>
     {% endfor %}
 
 {% endblock %}
