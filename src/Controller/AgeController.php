@@ -65,10 +65,16 @@ class AgeController extends AbstractController
 
     }
 
-    #[Route('/articledefini/{id}', name: 'app_articledefini')]
+    #[Route('/articledefini/{id<\d+>}', name: 'app_articledefini')]
     public function articledefini($id)
     {
-        return $this->render('article.html.twig', ['article' => $this->articles[$id]]);
+        $resultat = [];
+
+        if(array_key_exists($id, $this->articles)) {
+            $resultat = $this->articles[$id];
+        }
+        
+        return $this->render('article.html.twig', ['article' => $resultat]);
     }
 
     #[Route('/article2', name: 'app_article2')]

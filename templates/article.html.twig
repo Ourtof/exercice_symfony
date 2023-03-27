@@ -4,7 +4,11 @@
 
 {% block body %}
 
-        <h1>{{ article.titre }}</h1>
-        <p>{{ article.contenu }}</p>
+        {% if article %}
+                <h1>{{ article.titre }}</h1>
+                <p>{{ article.contenu }}</p>
+        {% else %}
+                <h1>Article non trouvé.</h1>
+        {% endif %}
 
 {% endblock %}
