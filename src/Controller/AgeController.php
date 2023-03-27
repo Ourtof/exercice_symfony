@@ -57,7 +57,7 @@ class AgeController extends AbstractController
     #[Route('/article/{id}', name: 'app_article')]
     public function article($id)
     {
-        if(array_key_exists($id, $this->article) && $id <= 3) {
+        if(array_key_exists($id, $this->article)) {
             return new Response(print_r($this->article[$id], true));
         } else {
             return new Response("L'article sélectionné n'existe pas");
