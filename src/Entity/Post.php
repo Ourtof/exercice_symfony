@@ -25,8 +25,8 @@ class Post
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\OneToOne(inversedBy: 'post', cascade: ['persist', 'remove'])]
-    private ?Category $Category = null;
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Category::class)]
+    private ?Collection $Category;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Tag::class)]
     private Collection $tag;
@@ -77,14 +77,32 @@ class Post
         return $this;
     }
 
-    public function getCategory(): ?Category
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
     {
         return $this->Category;
     }
 
-    public function setCategory(?Category $Category): self
+    public function addCategory(Category $category): self
     {
-        $this->Category = $Category;
+        if (!$this->Category->contains($category)) {
+            $this->Category->add($category);
+            $category->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Tag $category): self
+    {
+        if ($this->Category->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getPost() === $this) {
+                $category->setPost(null);
+            }
+        }
 
         return $this;
     }

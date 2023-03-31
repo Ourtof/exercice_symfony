@@ -20,7 +20,7 @@ class Category
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\OneToOne(mappedBy: 'Category', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'Category')]
     private ?Post $post = null;
 
     public function getId(): ?int
@@ -59,16 +59,6 @@ class Category
 
     public function setPost(?Post $post): self
     {
-        // unset the owning side of the relation if necessary
-        if ($post === null && $this->post !== null) {
-            $this->post->setCategory(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($post !== null && $post->getCategory() !== $this) {
-            $post->setCategory($this);
-        }
-
         $this->post = $post;
 
         return $this;
