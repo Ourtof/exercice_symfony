@@ -20,7 +20,7 @@ class Category
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Category')]
+    #[ORM\ManyToOne(inversedBy: 'category')]
     private ?Post $post = null;
 
     public function getId(): ?int

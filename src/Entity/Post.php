@@ -26,13 +26,14 @@ class Post
     private ?\DateTimeInterface $date = null;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Category::class)]
-    private ?Collection $Category;
+    private Collection $category;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Tag::class)]
     private Collection $tag;
 
     public function __construct()
     {
+        $this->category = new ArrayCollection();
         $this->tag = new ArrayCollection();
     }
 
@@ -82,22 +83,22 @@ class Post
      */
     public function getCategory(): Collection
     {
-        return $this->Category;
+        return $this->category;
     }
 
     public function addCategory(Category $category): self
     {
-        if (!$this->Category->contains($category)) {
-            $this->Category->add($category);
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
             $category->setPost($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(Tag $category): self
+    public function removeCategory(Category $category): self
     {
-        if ($this->Category->removeElement($category)) {
+        if ($this->category->removeElement($category)) {
             // set the owning side to null (unless already changed)
             if ($category->getPost() === $this) {
                 $category->setPost(null);
