@@ -20,9 +20,6 @@ class Tag
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tag')]
-    private ?Post $post = null;
-
     public function getId(): ?int
     {
         return $this->id;
