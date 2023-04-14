@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PostForm{% endblock %}
+
+{% block body %}
+
+    {# affichage non personnalisé du formulaire #}
+    {{ form(postForm) }}
+
+    {# affichage personnalisé du formulaire #}
+
+    {# création d'un label lié à un champ auquel on ajoute une classe #}
+    {{ form_label(postForm.title, 'titre du post : ' {'label_attr' :  {'class' : 'label'}}) }}
+
+    {# affichage du champs avec personnaisation en créant un place holder et une classe #}
+    {{ form_widget(postForm.title, {'attr' : {'placeholder' : ' Titre du post ', 'class' : 'title'}}) }}
+
+    {{ form_label(postForm.content, 'Contenu du post : ', {'label_attr' : {'class' : 'label'}}) }}
+    {{ form_widget(postForm.content, {'attr' : {'placeholder' : 'Contenu du post'}}) }}
+
+    {{ form_label(postForm.category, 'Catégorie du post : ', {'label_attr' : {'class' : 'label'}}) }}
+    {{ form_widget(postForm.caegory)}}
+
+    {{ form_widget(postForm.Enregistrer, {'attr' : {'label' : 'Enregistrer'}}) }}
+
+    {# fonction pour arrêter l'affichage du formulaire #}
+    {{ form_end(postForm) }}
+
+{% endblock %}
