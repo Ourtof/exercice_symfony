@@ -13,7 +13,7 @@ use App\Form\CategoryType;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/admin/category/index', name: 'app_admin_category')]
+    #[Route('/admin/category/index', name: 'admin_category_list')]
     public function categoryList(CategoryRepository $categoryRepository): Response
     {
         
@@ -26,13 +26,13 @@ class CategoryController extends AbstractController
 
     // READ
 
-    #[Route('/admin/category/{id}', name: 'admin_category_show')]
+    #[Route('/admin/category/index/{id}', name: 'admin_category_show')]
     public function categoryShow($id, CategoryRepository $categoryRepository)
     {
 
-        $category = $categoryRepository->find($id);
+        $index = $categoryRepository->find($id);
 
-        return $this->render("admin/category.html.twig", ['category' => $category]);
+        return $this->render("admin/category/index.html.twig", ['index' => $index]);
     }
 
     // CREAD

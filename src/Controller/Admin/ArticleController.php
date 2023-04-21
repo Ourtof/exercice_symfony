@@ -30,9 +30,9 @@ class ArticleController extends AbstractController
     public function postShow($id, PostRepository $postRepository)
     {
 
-        $post = $postRepository->find($id);
+        $index = $postRepository->find($id);
 
-        return $this->render("admin/post.html.twig", ['post' => $post]);
+        return $this->render("admin/post/index.html.twig", ['index' => $index]);
     }
 
     // CREATE

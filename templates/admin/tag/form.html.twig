@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}form{% endblock %}
+
+{% block body %}
+
+    {# affichage non personnalisé du formulaire #}
+    {{ form_start(form) }}
+
+    {# affichage personnalisé du formulaire #}
+
+    {# création d'un label lié à un champ auquel on ajoute une classe #}
+    {{ form_label(form.name, 'Nom du tag : ', {'label_attr' :  {'class' : 'label'}}) }}
+
+    {# affichage du champs avec personnalisation en créant un place holder et une classe #}
+    {{ form_widget(form.name, {'attr' : {'placeholder' : ' Nom du tag ', 'class' : 'name'}}) }}
+
+    {{ form_label(form.description, 'Contenu du tag : ', {'label_attr' : {'class' : 'label'}}) }}
+    {{ form_widget(form.description, {'attr' : {'placeholder' : 'Contenu du tag'}}) }}
+
+    {{ form_widget(form.Enregistrer, {'attr' : {'label' : 'Enregistrer'}}) }}
+
+    {# fonction pour arrêter l'affichage du formulaire #}
+    {{ form_end(form) }}
+
+{% endblock %}

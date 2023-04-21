@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tags{% endblock %}
+
+{% block body %}
+
+    {% for tag in index %}
+        <li><h1>{{ tag.name }}</h1></li>
+        <li><p>{{ tag.description }}</p></li>
+        <li><a href="{{ path('form_delete', { id: tag.id })}}">supprimer</a></li>
+    {% endfor %}
+
+{% endblock %}
