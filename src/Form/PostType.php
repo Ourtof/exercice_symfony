@@ -16,13 +16,14 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
+            // ->add('title', null, ['label' => 'Titre de l\'article : '])
             ->add('content')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'multiple' => true
+                // 'multiple' => true
             ])
-            ->add('date')
+            // ->add('date')
             ->add('Enregistrer', SubmitType::class)
         ;
     }

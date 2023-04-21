@@ -9,11 +9,10 @@
         {% for post in posts %}
                 <li><h1>{{ post.title }}</h1></li>
                 <li><p>{{ post.content }}</p></li>
-                        {{ dump(post.category) }}
-                        {# {% for category in post.category %}
-                                <li><p>{{ category }}</p></li>
-                        {% endfor %} #}
-                <li><p>{{ post.date|date("d/m/Y")  }}</p></li>
+                <li>{{ post.category }}</li>
+                <li>{{ post.tag}}</li>
+                <li><p>{{ post.date|date("d/m/Y") }}</p></li>
+                <li><a href="{{ path('postform_delete', { id: post.id })}}">supprimer</a></li>
         {% endfor %}
         
 {% endblock %}

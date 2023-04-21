@@ -10,7 +10,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Post;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\PostType;
-use Doctrine\ORM\EntityManager;
 
 class AdminArticleController extends AbstractController
 {

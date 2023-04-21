@@ -5,12 +5,12 @@
 {% block body %}
 
     {# affichage non personnalisé du formulaire #}
-    {{ form(postForm) }}
+    {{ form_start(postForm) }}
 
     {# affichage personnalisé du formulaire #}
 
     {# création d'un label lié à un champ auquel on ajoute une classe #}
-    {{ form_label(postForm.title, 'titre du post : ' {'label_attr' :  {'class' : 'label'}}) }}
+    {{ form_label(postForm.title, 'Titre du post : ', {'label_attr' :  {'class' : 'label'}}) }}
 
     {# affichage du champs avec personnaisation en créant un place holder et une classe #}
     {{ form_widget(postForm.title, {'attr' : {'placeholder' : ' Titre du post ', 'class' : 'title'}}) }}
@@ -19,7 +19,10 @@
     {{ form_widget(postForm.content, {'attr' : {'placeholder' : 'Contenu du post'}}) }}
 
     {{ form_label(postForm.category, 'Catégorie du post : ', {'label_attr' : {'class' : 'label'}}) }}
-    {{ form_widget(postForm.caegory)}}
+    {{ form_widget(postForm.category) }}
+
+    {# {{ form_label(postForm.date, 'Date du post : ', {'label_attr' : {'class' : 'label'}}) }}
+    {{ form_widget(postForm.date) }} #}
 
     {{ form_widget(postForm.Enregistrer, {'attr' : {'label' : 'Enregistrer'}}) }}
 

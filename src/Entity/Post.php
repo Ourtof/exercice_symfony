@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -25,16 +26,15 @@ class Post
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Category::class)]
-    private Collection $category;
+    #[ORM\ManyToOne]
+    private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Tag::class)]
-    private Collection $tag;
+    #[ORM\ManyToOne]
+    private ?Tag $tag = null;
 
     public function __construct()
     {
-        $this->category = new ArrayCollection();
-        $this->tag = new ArrayCollection();
+        $this->date = new \DateTime('now');
     }
 
     public function getId(): ?int
@@ -78,62 +78,26 @@ class Post
         return $this;
     }
 
-    /**
-     * @return Collection<int, Category>
-     */
-    public function getCategory(): Collection
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function addCategory(Category $category): self
+    public function setCategory(?Category $category): self
     {
-        if (!$this->category->contains($category)) {
-            $this->category->add($category);
-            $category->setPost($this);
-        }
+        $this->category = $category;
 
         return $this;
     }
 
-    public function removeCategory(Category $category): self
-    {
-        if ($this->category->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-            if ($category->getPost() === $this) {
-                $category->setPost(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Tag>
-     */
-    public function getTag(): Collection
+    public function getTag(): ?Tag
     {
         return $this->tag;
     }
 
-    public function addTag(Tag $tag): self
+    public function setTag(?Tag $tag): self
     {
-        if (!$this->tag->contains($tag)) {
-            $this->tag->add($tag);
-            $tag->setPost($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tag->removeElement($tag)) {
-            // set the owning side to null (unless already changed)
-            if ($tag->getPost() === $this) {
-                $tag->setPost(null);
-            }
-        }
+        $this->tag = $tag;
 
         return $this;
     }
