@@ -11,18 +11,22 @@ use App\Entity\Post;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\PostType;
 
-class AdminArticleController extends AbstractController
+class ArticleController extends AbstractController
 {
-    #[Route('/admin/posts', name: 'admin_post_list')]
+    #[Route('/admin/post/index', name: 'admin_post_list')]
     public function postList(PostRepository $postRepository): Response
     {
 
-        $posts = $postRepository->findAll();
+        $index = $postRepository->findAll();
 
-        return $this->render("admin/posts.html.twig", ['posts' => $posts]);
+        return $this->render("admin/post/index.html.twig", ['index' => $index]);
     }
 
-    #[Route('/admin/post/{id}', name: 'admin_post_show')]
+    // CRUD
+
+    // READ
+
+    #[Route('/admin/post/index/{id}', name: 'admin_post_show')]
     public function postShow($id, PostRepository $postRepository)
     {
 
@@ -30,8 +34,6 @@ class AdminArticleController extends AbstractController
 
         return $this->render("admin/post.html.twig", ['post' => $post]);
     }
-
-    // CRUD
 
     // CREATE
 
@@ -60,7 +62,7 @@ class AdminArticleController extends AbstractController
         }
 
         // affichage de la vue qui contient le formulaire
-        return $this->render("admin/postform.html.twig", ['postForm' => $postForm->createView()]);
+        return $this->render("admin/post/postform.html.twig", ['postForm' => $postForm->createView()]);
     }
 
     // UPDATE
@@ -91,7 +93,7 @@ class AdminArticleController extends AbstractController
         }
 
         // affichage de la vue qui contient le formulaire
-        return $this->render("admin/postform.html.twig", ['postForm' => $postForm->createView()]);
+        return $this->render("admin/post/postform.html.twig", ['postForm' => $postForm->createView()]);
     }
 
     // DELETE
