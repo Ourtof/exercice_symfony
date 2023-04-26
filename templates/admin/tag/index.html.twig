@@ -7,7 +7,7 @@
     {% for tag in index %}
         <li><h1>{{ tag.name }}</h1></li>
         <li><p>{{ tag.description }}</p></li>
-        <li><a href="{{ path('form_delete', { id: tag.id })}}">supprimer</a></li>
+        <li><a href="{{ path('admin_tag_delete', { id: tag.id })}}">supprimer</a></li>
     {% endfor %}
 
 {% endblock %}

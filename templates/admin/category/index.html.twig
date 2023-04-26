@@ -7,7 +7,7 @@
     {% for category in index %}
         <li><h1>{{ category.name }}</h1></li>
         <li><p>{{ category.description }}</p></li>
-        <li><a href="{{ path('form_delete', { id: category.id })}}">supprimer</a></li>
+        <li><a href="{{ path('admin_category_delete', { id: category.id })}}">supprimer</a></li>
     {% endfor %}
 
 {% endblock %}

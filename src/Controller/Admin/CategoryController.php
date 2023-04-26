@@ -35,9 +35,9 @@ class CategoryController extends AbstractController
         return $this->render("admin/category/index.html.twig", ['index' => $index]);
     }
 
-    // CREAD
+    // CREATE
 
-    #[Route('admin/create/category', name: 'form_create')]
+    #[Route('admin/create/category', name: 'admin_category_create')]
     public function categoryCreate(EntityManagerInterface $entityManagerInterface, Request $request)
     {
         // instanciation d'un nouvel article
@@ -67,7 +67,7 @@ class CategoryController extends AbstractController
 
     // UPDATE
 
-    #[Route('admin/update/category/{id}', name: 'form_update')]
+    #[Route('admin/update/category/{id}', name: 'admin_category_update')]
     public function categoryUpdate($id, EntityManagerInterface $entityManagerInterface, Request $request, CategoryRepository $categoryRepository)
     {
 
@@ -98,7 +98,7 @@ class CategoryController extends AbstractController
 
     // DELETE
 
-    #[Route('admin/delete/category/{id}', name: 'form_delete')]
+    #[Route('admin/delete/category/{id}', name: 'admin_category_delete')]
     public function deleteCategory($id, EntityManagerInterface $entityManagerInterface, CategoryRepository $categoryRepository)
     {
         // récupération d'un article grâce à son id

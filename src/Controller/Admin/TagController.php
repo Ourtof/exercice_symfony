@@ -30,14 +30,14 @@ class TagController extends AbstractController
     public function tagShow($id, TagRepository $tagRepository)
     {
 
-        $tag = $tagRepository->find($id);
+        $index = $tagRepository->find($id);
 
-        return $this->render("admin/tag/tag.html.twig", ['tag' => $tag]);
+        return $this->render("admin/tag/index.html.twig", ['index' => $index]);
     }
 
     // CREATE
 
-    #[Route('admin/create/tag', name: 'form_create')]
+    #[Route('admin/create/tag', name: 'admin_tag_create')]
     public function tagCreate(EntityManagerInterface $entityManagerInterface, Request $request)
     {
         // instanciation d'un nouvel article
@@ -67,7 +67,7 @@ class TagController extends AbstractController
 
     // UPDATE
 
-    #[Route('admin/update/tag/{id}', name: 'form_update')]
+    #[Route('admin/update/tag/{id}', name: 'admin_tag_update')]
     public function tagUpdate($id, EntityManagerInterface $entityManagerInterface, Request $request, TagRepository $tagRepository)
     {
 
@@ -98,7 +98,7 @@ class TagController extends AbstractController
 
     // DELETE
 
-    #[Route('admin/delete/tag/{id}', name: 'form_delete')]
+    #[Route('admin/delete/tag/{id}', name: 'admin_tag_delete')]
     public function deleteArticle($id, EntityManagerInterface $entityManagerInterface, TagRepository $tagRepository)
     {
 
